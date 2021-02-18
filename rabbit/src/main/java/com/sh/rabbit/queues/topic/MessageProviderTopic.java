@@ -33,7 +33,7 @@ public class MessageProviderTopic {
         //参数3：队列特性是否需要持久化
         //参数4：是否在消息消费完之后自动删除队列
         //参数5：额外附加参数
-        channel.exchangeDeclare(exchangeName, "topic", true, true, null);
+        channel.exchangeDeclare(exchangeName, "topic", Boolean.TRUE, Boolean.TRUE, null);
 
         //发布消息
         //参数1：交换机名称

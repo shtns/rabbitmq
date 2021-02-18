@@ -33,7 +33,7 @@ public class MessageConsumerOneTopic {
         //参数3：队列特性是否需要持久化
         //参数4：是否在消息消费完之后自动删除队列
         //参数5：额外附加参数
-        channel.exchangeDeclare(exchangeName, "topic", true, true, null);
+        channel.exchangeDeclare(exchangeName, "topic", Boolean.TRUE, Boolean.TRUE, null);
 
         //临时队列
         String queueName = channel.queueDeclare().getQueue();
@@ -49,7 +49,7 @@ public class MessageConsumerOneTopic {
         //参数1：队列名称，消费那个队列的消息
         //参数2：消息自动确认机制，是否自动确认消息消费完成
         //参数3：消费消息时的回调接口
-        channel.basicConsume(queueName, false, new DefaultConsumer(channel) {
+        channel.basicConsume(queueName, Boolean.FALSE, new DefaultConsumer(channel) {
 
             /**
              * 消费消息回调方法
@@ -66,7 +66,7 @@ public class MessageConsumerOneTopic {
                 //手动确认消息已消费
                 //参数1：确认队列那个具体消息
                 //参数2：是否开启多个消息同时确认
-                channel.basicAck(envelope.getDeliveryTag(), false);
+                channel.basicAck(envelope.getDeliveryTag(), Boolean.FALSE);
             }
         });
     }

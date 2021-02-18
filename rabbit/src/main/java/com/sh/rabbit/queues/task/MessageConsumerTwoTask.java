@@ -33,13 +33,13 @@ public class MessageConsumerTwoTask {
         //参数3：是否独占队列，当前队列是否可以被其他连接
         //参数4：是否在消息消费完之后自动删除队列
         //参数5：额外附加参数
-        channel.queueDeclare(queueName, true, false, true, null);
+        channel.queueDeclare(queueName, Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, null);
 
         //消费消息
         //参数1：队列名称，消费那个队列的消息
         //参数2：消息自动确认机制，是否自动确认消息消费完成
         //参数3：消费消息时的回调接口
-        channel.basicConsume(queueName, false, new DefaultConsumer(channel) {
+        channel.basicConsume(queueName, Boolean.FALSE, new DefaultConsumer(channel) {
 
             /**
              * 消费消息回调方法
@@ -57,7 +57,7 @@ public class MessageConsumerTwoTask {
                 //手动确认消息已消费
                 //参数1：确认队列那个具体消息
                 //参数2：是否开启多个消息同时确认
-                channel.basicAck(envelope.getDeliveryTag(), false);
+                channel.basicAck(envelope.getDeliveryTag(), Boolean.FALSE);
             }
         });
     }

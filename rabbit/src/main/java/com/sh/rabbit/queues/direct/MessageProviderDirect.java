@@ -33,7 +33,7 @@ public class MessageProviderDirect {
         //参数3：是否独占队列，当前队列是否可以被其他连接
         //参数4：是否在消息消费完之后自动删除队列
         //参数5：额外附加参数
-        channel.queueDeclare(queueName, true, false, true, null);
+        channel.queueDeclare(queueName, Boolean.TRUE, Boolean.FALSE, Boolean.TRUE, null);
 
         //发布消息
         //参数1：交换机名称
